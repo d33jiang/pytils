@@ -1,4 +1,4 @@
-from typing import Any, Tuple, Dict
+from typing import Any, Dict, Tuple
 
 __all__ = [
     'SingletonMeta'
@@ -6,6 +6,13 @@ __all__ = [
 
 
 class SingletonMeta(type):
+    """
+    Metaclass for defining singleton classes.
+
+    The resulting singleton class can then be instantiated at most once. The first instance is reused for subsequent
+    instantiations and the arguments provided in subsequent instantiations are simply discarded.
+
+    """
 
     def __init__(cls, name: str, bases: Tuple[type, ...], dct: Dict[str, Any]):
         cls._Singleton__instance = None

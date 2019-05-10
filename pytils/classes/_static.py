@@ -1,4 +1,4 @@
-from typing import Type, NoReturn
+from typing import NoReturn, Type
 
 __all__ = [
     'static'
@@ -10,6 +10,14 @@ def _raise_init():
 
 
 def static(cls) -> Type:
+    """
+    Decorator for defining static classes.
+
+    The resulting static class cannot be instantiated. If the __init__ method is defined, then it is invoked with None
+    as the sole argument when the static class is defined.
+
+    """
+
     def on_init(*_args, **_kwargs) -> NoReturn:
         _raise_init()
 

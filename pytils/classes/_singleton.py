@@ -2,6 +2,13 @@ from typing import Type
 
 
 def singleton(cls) -> Type:
+    """
+    Decorator for defining singleton classes.
+
+    The resulting singleton class can then be instantiated at most once. The first instance is reused for subsequent
+    instantiations and the arguments provided in subsequent instantiations are simply discarded.
+
+    """
     new_function = cls.__new__
 
     def get_instance(_cls, *args, **kwargs):

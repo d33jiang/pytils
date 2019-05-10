@@ -1,4 +1,4 @@
-from typing import Any, Tuple, Dict, NoReturn
+from typing import Any, Dict, NoReturn, Tuple
 
 __all__ = [
     'StaticMeta'
@@ -6,6 +6,13 @@ __all__ = [
 
 
 class StaticMeta(type):
+    """
+    Metaclass for defining static classes.
+
+    The resulting static class cannot be instantiated. If the __init__ method is defined, then it is invoked with None
+    as the sole argument when the static class is defined.
+
+    """
 
     @staticmethod
     def _raise_init():
