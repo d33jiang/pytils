@@ -5,7 +5,8 @@ from typing import Any, Deque, NamedTuple, Optional, Sequence, Tuple
 from .._config.time import DEFAULT_TIME_SUPPLIER, TimeSupplier, TimeType
 
 __all__ = [
-    'Stopwatch'
+    'Mark',
+    'Stopwatch',
 ]
 
 
@@ -36,7 +37,7 @@ class Stopwatch:
         self._marks = deque()  # type: Deque[Mark]
 
     def __repr__(self) -> str:
-        """Return a string representation of the Stopwatch instance."""
+        """Get a string representation of the Stopwatch instance."""
         return f'<Stopwatch; ref: {self._reference_time!s}; num_marks: {len(self._marks)}>'
 
     @property
