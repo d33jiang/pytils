@@ -32,6 +32,10 @@ class AbstractPath(metaclass=abc.ABCMeta):
         """Create an AbstractPath from joining the provided path segment to the end of this path string."""
         return AbstractPath(self._join(self._path, segment))
 
+    def concatenate(self, other: 'AbstractPath'):
+        """Create an AbstractPath from joining the provided path segment to the end of this path string."""
+        return self._resolve(other.path)
+
     def resolve(self, segment: str) -> 'AbstractPath':
         """Create an AbstractPath from joining the provided path segment to the end of this path string."""
         return self._resolve(segment)
