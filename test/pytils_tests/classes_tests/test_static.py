@@ -6,15 +6,8 @@ from pytils.classes.meta import StaticMeta
 flags = {}
 
 
-def run_static_class_test_init(self, key):
-    assert key not in flags
-    flags[key] = {}
-
-    flags[key]['has_init_run'] = True
-    flags[key]['was_self_none_during_init'] = self is None
-
-
 def assert_is_static_class(cls, key):
+    """Test that the provided class satisfies the properties desired of a static class."""
     assert key in flags
     assert flags[key]['has_init_run']
     assert flags[key]['was_self_none_during_init']
@@ -23,22 +16,33 @@ def assert_is_static_class(cls, key):
         _ = cls()
 
 
-class Static(metaclass=StaticMeta):
+def run_static_class_test_init(self, key):
+    """Initialize an instance of a tested static class by marking that the __init__ function has been run."""
+    assert key not in flags
+    flags[key] = {}
+
+    flags[key]['has_init_run'] = True
+    flags[key]['was_self_none_during_init'] = self is None
+
+
+class MetaclassStatic(metaclass=StaticMeta):
+    """A static class that is created from the pytils.classes.meta.StaticMeta metaclass."""
 
     def __init__(self):
-        run_static_class_test_init(self, 'Static')
+        run_static_class_test_init(self, 'MetaclassStatic')
 
 
 @static
-class DecoratedStatic:
+class DecoratorStatic:
+    """A static class that is created from the @pytils.classes.static decorator."""
 
     def __init__(self):
-        run_static_class_test_init(self, 'DecoratedStatic')
+        run_static_class_test_init(self, 'DecoratorStatic')
 
 
-def test_static():
-    assert_is_static_class(Static, 'Static')
+def test_static_metaclass():
+    assert_is_static_class(MetaclassStatic, 'MetaclassStatic')
 
 
-def test_decorated_static():
-    assert_is_static_class(DecoratedStatic, 'DecoratedStatic')
+def test_static_decorator():
+    assert_is_static_class(DecoratorStatic, 'DecoratorStatic')
