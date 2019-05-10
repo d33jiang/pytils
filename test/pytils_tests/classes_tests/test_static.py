@@ -1,3 +1,5 @@
+"""Test the creation of static classes through the pytils.classes package."""
+
 import pytest
 
 from pytils.classes import static

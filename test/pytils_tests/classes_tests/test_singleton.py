@@ -1,3 +1,5 @@
+"""Test the creation of singleton classes through the pytils.classes package."""
+
 from pytils.classes import singleton
 from pytils.classes.meta import SingletonMeta
 
