@@ -1,2 +1,4 @@
+# noinspection PyUnusedLocal
 def pytest_ignore_collect(path, config):
-    return 'manual_tests' in str(path)
+    """Ignore all files in this test subdirectory."""
+    return True
