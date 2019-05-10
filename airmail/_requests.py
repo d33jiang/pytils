@@ -4,7 +4,7 @@ from pytils.classes.meta import StaticMeta
 from pytils.paths import AbstractPath
 
 __all__ = [
-    'Requests'
+    'Requests',
 ]
 
 
