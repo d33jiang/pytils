@@ -23,3 +23,7 @@ class SingletonMeta(type):
             cls._Singleton__instance = super(SingletonMeta, cls).__call__(*args, **kwargs)
 
         return cls._Singleton__instance
+
+    def exists_instance(cls) -> bool:
+        """Get whether an instance of this singleton class exists."""
+        return cls._Singleton__instance is not None

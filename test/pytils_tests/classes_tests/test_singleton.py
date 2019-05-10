@@ -7,10 +7,14 @@ from pytils.classes.meta import SingletonMeta
 def assert_is_singleton_class(cls):
     """Test that the provided class satisfies the properties desired of a singleton class."""
     assert not hasattr(cls, 'has_instantiated')
+    assert not cls.exists_instance()
 
     instance = cls()
-    assert hasattr(cls, 'has_instantiated')
+
     assert instance is not None
+
+    assert hasattr(cls, 'has_instantiated')
+    assert cls.exists_instance()
 
     instance2 = cls()
     assert instance2 is instance

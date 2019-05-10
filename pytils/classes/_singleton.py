@@ -12,7 +12,7 @@ def singleton(cls) -> Type:
     new_function = cls.__new__
 
     def get_instance(_cls, *args, **kwargs):
-        if not hasattr(cls, '_Singleton__instance'):
+        if cls._Singleton__instance is None:
             cls.__new__ = new_function
             cls._Singleton__instance = cls(*args, **kwargs)
             cls.__new__ = get_instance
@@ -25,5 +25,13 @@ def singleton(cls) -> Type:
 
         return cls._Singleton__instance
 
+    def exists_instance() -> bool:
+        """Get whether an instance of this singleton class exists."""
+        return cls._Singleton__instance is not None
+
     cls.__new__ = get_instance
+    cls.exists_instance = exists_instance
+
+    cls._Singleton__instance = None
+
     return cls
