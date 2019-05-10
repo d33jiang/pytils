@@ -8,10 +8,10 @@ __all__ = [
 
 class ObjectView(collections.abc.Sequence, collections.abc.Mapping):
 
+    __slots__ = ('_ov_backing_data',)
+
     def __init__(self, data: Any):
         object.__setattr__(self, '_ov_backing_data', data)
-
-    __slots__ = ('_ov_backing_data',)
 
     @staticmethod
     def _select_view_ctor(data: Any):
